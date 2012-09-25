@@ -1,12 +1,6 @@
 <?php // $Id: assignment.class.php,v 1.33.2.5 2008/04/08 03:02:49 scyrma Exp $
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot.'/blocks/kaltura/lib.php');
-require_once($CFG->dirroot.'/blocks/kaltura/locallib.php');
-require_js($CFG->wwwroot.'/blocks/kaltura/js/jquery.js');
-require_js($CFG->wwwroot.'/blocks/kaltura/js/kvideo.js');
-require_js($CFG->wwwroot.'/blocks/kaltura/js/swfobject.js');
-
 /**
  * Extend the base assignment class for assignments where you upload a single file
  *
@@ -14,9 +8,16 @@ require_js($CFG->wwwroot.'/blocks/kaltura/js/swfobject.js');
 class assignment_kaltura extends assignment_base {
 
     function assignment_kaltura($cmid = 'staticonly', $assignment = NULL, $cm = NULL, $course = NULL, $groupid = NULL) {
+        global $CFG;
+
+        require_once($CFG->dirroot.'/blocks/kaltura/lib.php');
+        require_once($CFG->dirroot.'/blocks/kaltura/locallib.php');
+        require_js($CFG->wwwroot.'/blocks/kaltura/js/jquery.js');
+        require_js($CFG->wwwroot.'/blocks/kaltura/js/kvideo.js');
+        require_js($CFG->wwwroot.'/blocks/kaltura/js/swfobject.js');
+
         parent::assignment_base($cmid, $assignment, $cm, $course, $groupid);
-        $this->type     = 'kaltura';
-        $this->release  = '1.1';
+        $this->release  = '1.2';
 
         // Add Kaltura block instance (needed for backup and restor purposes)
         $blockid = get_field('block', 'id', 'name', 'kaltura');
