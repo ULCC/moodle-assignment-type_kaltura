@@ -174,7 +174,7 @@ class assignment_kaltura extends assignment_base {
 
     function view_upload_form() {
 
-        global $CFG, $USER;
+        global $CFG, $USER, $COURSE;
 
         $submission = $this->get_submission($USER->id);
 
@@ -211,7 +211,7 @@ class assignment_kaltura extends assignment_base {
 
             echo get_wait_image('divWait', 'id_widget', false, false);
 
-            $cw_url = $CFG->wwwroot.'/blocks/kaltura/kcw.php?mod=assignment&upload_type=mix';
+            $cw_url = $CFG->wwwroot.'/blocks/kaltura/kcw.php?mod=assignment&upload_type=mix&courseid='.$COURSE->id;
 //            $cw_url = $CFG->wwwroot.'/blocks/kaltura/kcw.php?mod=assignment&upload_type=video';
 
             if(isset($submission->data1) && $submission->data1 != '') {
